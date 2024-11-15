@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .  # El contexto de construcción es el directorio actual
+      dockerfile: Dockerfile  # Especificamos el Dockerfile a utilizar (opcional si se llama Dockerfile)
+    container_name: proyecto-node-puppeteer-container
+    volumes:
+      - ./:/app # Mapea el directorio 'src' de tu máquina al contenedor, ajusta si es necesario
+    ports:
+      - "5000:5000"  # Mapea el puerto 5000 del contenedor al puerto 5000 de la máquina
+    environment:
+      - NODE_ENV=production  # Establece el entorno de producción (opcional)
+    command: ["node", "index.js"]  # Comando para ejecutar el archivo principal
+    # restart: unless-stopped  # Reinicia el contenedor a menos que se detenga explícitamente

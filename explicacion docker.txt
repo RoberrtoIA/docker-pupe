@@ -1,0 +1,37 @@
+Voy a desglosar el comando docker run --rm -v /c/NestJS-Series/proyecto-node-puppeteer:/app proyecto-node-puppeteer paso a paso:
+
+1. docker run
+Este es el comando principal para ejecutar un contenedor en Docker. Crea un contenedor a partir de una imagen y lo ejecuta.
+
+2. --rm
+La opción --rm indica que el contenedor será eliminado automáticamente cuando termine su ejecución. Esto es útil para evitar que los contenedores se acumulen después de ejecutarse. El contenedor se elimina una vez que el proceso que se está ejecutando en él termina.
+
+3. -v /c/NestJS-Series/proyecto-node-puppeteer:/app
+La opción -v es utilizada para montar un volumen, es decir, vincular un directorio de tu sistema operativo local con un directorio dentro del contenedor Docker. En este caso:
+
+/c/NestJS-Series/proyecto-node-puppeteer: Es la ruta del directorio en tu sistema local (en Windows, la letra de la unidad C: es representada como /c/ en Docker).
+/app: Es el directorio dentro del contenedor donde se montará el directorio local.
+Esto significa que el contenido del directorio local /c/NestJS-Series/proyecto-node-puppeteer se sincroniza con el directorio /app dentro del contenedor Docker. Cualquier cambio que hagas en el directorio local se reflejará dentro del contenedor y viceversa.
+
+4. proyecto-node-puppeteer
+Este es el nombre de la imagen de Docker que se utilizará para crear y ejecutar el contenedor. Esta imagen debe existir en tu máquina local o en un registro remoto (por ejemplo, Docker Hub). En este caso, se refiere a una imagen llamada proyecto-node-puppeteer.
+
+Explicación de la confusión sobre el espacio:
+En cuanto a tu duda, la parte app proyecto-node-puppeteer no está separada por un espacio porque Docker utiliza un solo argumento después de -v. La confusión puede surgir porque parece que hay una separación entre dos partes, pero no lo es. Vamos a aclararlo:
+
+-v /c/NestJS-Series/proyecto-node-puppeteer:/app es la opción para montar el volumen, que tiene dos partes separadas por el signo ::
+
+El primer parte es el directorio local /c/NestJS-Series/proyecto-node-puppeteer.
+El segundo parte es el directorio dentro del contenedor /app.
+Después de esto, proyecto-node-puppeteer es simplemente el nombre de la imagen de Docker, que no tiene ninguna relación directa con los volúmenes montados.
+
+Por lo tanto, app proyecto-node-puppeteer no tiene ningún sentido como una ruta separada. Lo correcto sería app (la carpeta dentro del contenedor) y proyecto-node-puppeteer (la imagen de Docker), pero como ya se explicó, no se deben mezclar los volúmenes con el nombre de la imagen.
+
+Resumen
+El comando completo se interpreta así:
+
+docker run ejecuta un contenedor.
+--rm elimina el contenedor automáticamente al finalizar.
+-v /c/NestJS-Series/proyecto-node-puppeteer:/app monta el directorio local en el contenedor.
+proyecto-node-puppeteer es el nombre de la imagen que se va a usar para crear el contenedor.
+Espero que esto aclare tus dudas. Si tienes más preguntas o necesitas más detalles, no dudes en preguntar.
